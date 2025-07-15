@@ -38,5 +38,30 @@ async  function signUp() {
 
     ); //await use karanawanam async wenna one function eka
 
+    if (response.ok) { //success
+
+        const json = await response.json();
+
+        if (json.status) {
+
+            //refirect another page
+//            document.getElementById("message").innerHTML = "text-success";
+//            document.getElementById("message").innerHTML = json.message;
+
+            window.location = "verify-account.html";
+
+        } else { // when enother statuse flash
+
+            // custom massages
+            document.getElementById("message").innerHTML = json.message;
+
+        }
+
+    } else {
+
+        document.getElementById("message").innerHTML = "Registration failed. Please try again";
+
+    }
+
 }
 
