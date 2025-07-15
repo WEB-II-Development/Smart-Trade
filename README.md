@@ -1,5 +1,4 @@
-# 💼 Smart Trade - User Authentication Interface
-
+# 💼 Smart Trade
 Smart Trade is a clean and responsive user interface for a **user authentication system**, designed to be integrated into a Java EE web application. This project contains the frontend build along with deployment configuration using Apache Ant.
 
 ---
