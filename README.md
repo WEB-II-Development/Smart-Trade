@@ -63,4 +63,46 @@ After completing the sign-up process, users are:
 * verify-account.html
 <img width="1235" height="857" alt="image" src="https://github.com/user-attachments/assets/f0bbb873-d0dd-49b9-a417-a6cc8f2ffec8" />
 
+# 2025-07-16
 
+## 🔐 Sign In Process
+**File:** `SignIn.java`
+
+### How it works:
+- The user enters **email/username and password**.
+- The system uses **Hibernate** to connect to the database and check if a matching user exists.
+
+#### If the user is found:
+- A **session** is created for the user.
+- A **success response** is sent.
+
+#### If no match:
+- A response is sent saying:  
+  ❌ **"Invalid email or password."**
+
+---
+* sign-in.html
+
+<img width="1219" height="854" alt="image" src="https://github.com/user-attachments/assets/c6a1a07f-c6aa-4ef3-bd38-e6fbeba2a9d9" />
+
+## ✅ Verification Process
+**File:** `VerifyAccount.java`
+
+### How it works:
+- After signing up, a **verification code** is sent to the user's email.
+- The user enters this code on the `verify-account.html` page.
+
+#### The system checks the code:
+- ✅ If it **matches**: The account is marked as **verified** in the database.
+- ❌ If it **doesn't match**: An **error message** is shown.
+
+---
+
+## 🧰 Session Filter
+**File:** `SessionFilter.java`
+
+### How it works:
+- This filter checks if a user is **logged in** before accessing protected pages.
+
+#### If not logged in:
+- The user is **redirected** to the `sign-in.html` page.
