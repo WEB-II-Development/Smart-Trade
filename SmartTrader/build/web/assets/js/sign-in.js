@@ -57,4 +57,23 @@ async function signIn() {
 
     }
 
-} 
+}
+
+//async function authenticateUser() {
+//
+//    const response = await fetch("SignIn");
+//
+//    if (response.ok) {
+//
+//        const json = await response.json();
+//
+//        if (json.message === "1") {
+//
+//            window.location = "index.html";
+//
+//        } 
+//
+//    } else {
+//    }
+//
+//}
