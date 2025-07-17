@@ -106,3 +106,38 @@ After completing the sign-up process, users are:
 
 #### If not logged in:
 - The user is **redirected** to the `sign-in.html` page.
+- 
+
+# 2025-07-17
+
+## 🔐 Sign Out
+
+- Triggered by a button or link calling the `signOut()` function.
+- Functionality:
+  - Clears stored user data from `localStorage`.
+  - Redirects the user to `sign-in.html`.
+
+## 👤 Profile Details
+
+- Page: my-account.html
+
+- On page load, the loadData() function is executed.
+
+- This function fetches and displays stored user data from localStorage into input fields.
+
+## 💾 Save Changes
+
+- When the Save button is clicked, the `saveChanges()` function is triggered.
+
+- Functionality:
+
+  - Reads updated values from input fields.
+
+  - (Optionally) Validates the data.
+
+  - Updates the user data in localStorage.
+
+* my-account.html
+
+<img width="1593" height="895" alt="image" src="https://github.com/user-attachments/assets/e3803b94-e2d6-49d9-bf99-05f3e73a769a" />
+
