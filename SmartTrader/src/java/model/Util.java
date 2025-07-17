@@ -29,4 +29,10 @@ public class Util {
 
     }
 
+    public static boolean isCodeValid(String code) {
+        
+        return code.matches("^\\d{4,5}$");
+
+    }
+
 }

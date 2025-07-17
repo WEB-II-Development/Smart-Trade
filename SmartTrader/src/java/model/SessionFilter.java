@@ -32,6 +32,14 @@ public class SessionFilter implements Filter {
 
         HttpSession s = req.getSession(false);
 
+        //cash clear
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        
+        res.setHeader("Pragma", "no-cache");
+        
+        res.setHeader("Expires", "0");
+        //cash clear
+
         if (s != null && s.getAttribute("user") != null) {
 
             res.sendRedirect("index.html");
