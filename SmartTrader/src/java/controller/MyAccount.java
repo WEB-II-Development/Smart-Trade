@@ -76,16 +76,6 @@ public class MyAccount extends HttpServlet {
         String newPassword = userData.get("newPassword").getAsString();
         String confirmPassword = userData.get("confirmPassword").getAsString();
 
-//        System.out.println(firstName);
-//        System.out.println(lastName);
-//        System.out.println(lineOne);
-//        System.out.println(lineTwo);
-//        System.out.println(postalCode);
-//        System.out.println(cityId);
-//        System.out.println(currentPassword);
-//        System.out.println(newPassword);
-//        System.out.println(confirmPassword);
-
         JsonObject responseObject = new JsonObject();
         responseObject.addProperty("status", false);
         

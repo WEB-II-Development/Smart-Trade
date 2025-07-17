@@ -80,7 +80,7 @@ async  function saveChanges() {
     const newpassword = document.getElementById("newpassword").value;
     const comfirmpassword = document.getElementById("comfirmpassword").value;
 
-    console.log(cityId);
+//    console.log(cityId);
 
     const userDataObject = {
         firstName: firstname,
