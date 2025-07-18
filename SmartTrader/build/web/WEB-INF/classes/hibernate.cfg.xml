@@ -24,6 +24,16 @@
         <mapping class = "hibernate.City"/>
         
         <mapping class = "hibernate.Address"/>
+        
+        <mapping class = "hibernate.Brand"/>
+        
+        <mapping class = "hibernate.Model"/>
+        
+        <mapping class = "hibernate.Color"/>
+        
+        <mapping class = "hibernate.Quality"/>
+        
+        <mapping class = "hibernate.Stroage"/>
  
     </session-factory>
     
