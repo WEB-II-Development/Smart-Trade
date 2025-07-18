@@ -141,3 +141,26 @@ After completing the sign-up process, users are:
 
 <img width="1593" height="895" alt="image" src="https://github.com/user-attachments/assets/e3803b94-e2d6-49d9-bf99-05f3e73a769a" />
 
+# 2025-07-18
+
+## 🛒 Product Adding 
+
+  - Data Parsing Only (form + logic)
+    
+* my-account.html
+  
+<img width="1252" height="750" alt="image" src="https://github.com/user-attachments/assets/74f37169-a034-4e81-8008-076a0f829941" />
+
+## 👤 Saving Account Details 
+
+- Complete Process (Insert / Update form + backend if any)
+
+## 🗺️ Viewing Address 
+
+- Complete Process (Viewing Shipping Address UI + data loading)
+  
+* my-account.html
+  
+<img width="1607" height="727" alt="image" src="https://github.com/user-attachments/assets/819131fa-8dd2-4ee9-b6fb-176d0d2bca22" />
+
+
