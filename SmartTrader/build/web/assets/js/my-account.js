@@ -25,7 +25,7 @@ async function getUserData() {
 
         const json = await response.json();
 
-//        console.log(json);
+        console.log(json);
 
         document.getElementById("username").innerHTML = `Hello, ${json.firstname} ${json.lastname}`;
 
@@ -36,6 +36,66 @@ async function getUserData() {
         document.getElementById("lastname").value = json.lastname;
 
         document.getElementById("currentpassword").value = json.password;
+
+        if (json.hasOwnProperty("addressList") && json.addressList !== undefined) {
+
+            let email;
+
+            let lineOne;
+
+            let lineTwo;
+
+            let city;
+
+            let postalCode;
+
+            let cityId;
+
+            const addressUL = document.getElementById("addressUL");
+
+            json.addressList.forEach(address => {
+
+                email = address.user.email;
+
+                lineOne = address.lineOne;
+
+                lineTwo = address.lineTwo;
+
+                city = address.city.name;
+
+                postalCode = address.postalCode;
+
+                cityId = address.city.id;
+
+                const line = document.createElement("li");
+
+                line.innerHTML = lineOne + ", " + "<br/>" +
+                        lineTwo + ", " + "<br/>" + city + ". " + "<br/>" + postalCode;
+
+                addressUL.appendChild(line);
+
+            });
+
+//            console.log("ok");
+
+            document.getElementById("addName").innerHTML = `Name : ${json.firstname} ${json.lastname}`;
+
+            document.getElementById("addEmail").innerHTML = `Email : ${email}`;
+
+            document.getElementById("contact").innerHTML = `Phone : 0711401506`;
+
+//            console.log(lastAddress);
+
+            document.getElementById("lineOne").value = lineOne;
+
+            document.getElementById("lineTwo").value = lineTwo;
+
+            document.getElementById("postalCode").value = postalCode;
+
+            document.getElementById("citySelect").value = parseInt(cityId); //parseInt()
+
+
+        }
 
     }
 
@@ -106,9 +166,23 @@ async  function saveChanges() {
 
     if (response.ok) {
 
-    } else {
-        
-        }
+        const json = await response.json;
 
+
+        if (json.status) {
+
+            getUserData();
+
+        } else {
+
+            document.getElementById("message").innerHTML = json.message;
+
+        }
+
+    } else {
+
+        document.getElementById("message").innerHTML = "Profile deatiles update failed!";
+
+     }
 
 }

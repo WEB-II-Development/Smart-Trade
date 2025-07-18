@@ -14,6 +14,7 @@ import hibernate.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +26,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.jpa.criteria.predicate.IsEmptyPredicate;
 
 /**
  *
@@ -32,40 +34,54 @@ import org.hibernate.criterion.Restrictions;
  */
 @WebServlet(name = "MyAccount", urlPatterns = {"/MyAccount"})
 public class MyAccount extends HttpServlet {
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        
         HttpSession ses = request.getSession(false);
-
+        
         if (ses != null && ses.getAttribute("user") != null) {
-
+            
+            Gson gson = new Gson();
+            
             User user = (User) ses.getAttribute("user");
-
+            
             JsonObject respoJsonObject = new JsonObject();
-
+            
             respoJsonObject.addProperty("firstname", user.getFirst_name());
             respoJsonObject.addProperty("lastname", user.getLast_name());
             respoJsonObject.addProperty("password", user.getPassword());
-
+            
             String since = new SimpleDateFormat("MMM yyyy").format(user.getCreated_at());
             respoJsonObject.addProperty("since", since);
-
-            Gson gson = new Gson();
+            
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            Criteria c = s.createCriteria(Address.class);
+            
+            c.add(Restrictions.eq("user", user));
+            if (!c.list().isEmpty()) {
+                
+                List<Address> addressList = c.list();
+                
+                respoJsonObject.add("addressList", gson.toJsonTree(addressList));
+                
+            } else {
+            }
+            
             String toJson = gson.toJson(respoJsonObject);
             response.setContentType("application/json");
             response.getWriter().write(toJson);
-
+            
         }
-
+        
     }
-
+    
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        
         Gson gson = new Gson();
         JsonObject userData = gson.fromJson(request.getReader(), JsonObject.class);
-
+        
         String firstName = userData.get("firstName").getAsString();
         String lastName = userData.get("lastName").getAsString();
         String lineOne = userData.get("lineOne").getAsString();
@@ -75,7 +91,7 @@ public class MyAccount extends HttpServlet {
         String currentPassword = userData.get("currentPassword").getAsString();
         String newPassword = userData.get("newPassword").getAsString();
         String confirmPassword = userData.get("confirmPassword").getAsString();
-
+        
         JsonObject responseObject = new JsonObject();
         responseObject.addProperty("status", false);
         
@@ -135,21 +151,21 @@ public class MyAccount extends HttpServlet {
             responseObject.addProperty("message", "Confirmed password does not matching entered new password!");
             
         } else {
-
+            
             HttpSession ses = request.getSession();
-
+            
             if (ses.getAttribute("user") != null) {
-
+                
                 User u = (User) ses.getAttribute("user");  // get session user
 
                 SessionFactory sf = HibernateUtil.getSessionFactory();
                 Session s = sf.openSession();
-
+                
                 Criteria c = s.createCriteria(User.class);
                 c.add(Restrictions.eq("email", u.getEmail()));  // session user email
 
                 if (!c.list().isEmpty()) {
-
+                    
                     User u1 = (User) c.list().get(0);   // db user
 
                     u1.setFirst_name(firstName);
@@ -159,7 +175,7 @@ public class MyAccount extends HttpServlet {
                     } else {
                         u1.setPassword(currentPassword);
                     }
-
+                    
                     City city = (City) s.load(City.class, cityId);   // primary key search
                     Address address = new Address();
                     address.setLineOne(lineOne);
@@ -174,20 +190,20 @@ public class MyAccount extends HttpServlet {
 
                     s.merge(u1);
                     s.save(address);
-
+                    
                     s.beginTransaction().commit();
                     responseObject.addProperty("status", true);
                     responseObject.addProperty("message", "User profile details update successfully!");
                     s.close();
-
+                    
                 }
-
+                
             }
-
+            
         }
-
+        
         String responseText = gson.toJson(responseObject);
-
+        
         response.setContentType("application/json");
         response.getWriter().write(responseText);
     }
