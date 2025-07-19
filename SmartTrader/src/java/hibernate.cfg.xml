@@ -31,7 +31,7 @@
         
         <mapping class = "hibernate.Color"/>
         
-        <mapping class = "hibernate.Quality"/>
+        <mapping class = "hibernate.Condition"/>
         
         <mapping class = "hibernate.Stroage"/>
  

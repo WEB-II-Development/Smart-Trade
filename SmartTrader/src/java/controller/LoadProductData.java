@@ -8,9 +8,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import hibernate.Brand;
 import hibernate.Color;
+import hibernate.Condition;
 import hibernate.HibernateUtil;
 import hibernate.Model;
-import hibernate.Quality;
 import hibernate.Stroage;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -80,8 +80,8 @@ public class LoadProductData extends HttpServlet {
 //        }
 
         //get Qualities
-        Criteria c4 = s.createCriteria(Quality.class);
-        List<Quality> qualityList = c4.list();
+        Criteria c4 = s.createCriteria(Condition.class);
+        List<Condition> qualityList = c4.list();
 
 //        for (Quality quality : qualityList) {
 //

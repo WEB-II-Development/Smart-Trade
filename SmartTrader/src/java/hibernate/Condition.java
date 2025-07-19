@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "quality")
-public class Quality implements Serializable {
+public class Condition implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
