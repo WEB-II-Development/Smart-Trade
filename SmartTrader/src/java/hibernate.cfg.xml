@@ -34,6 +34,10 @@
         <mapping class = "hibernate.Condition"/>
         
         <mapping class = "hibernate.Stroage"/>
+       
+        <mapping class = "hibernate.Status"/>
+        
+        <mapping class = "hibernate.Product"/>
  
     </session-factory>
     

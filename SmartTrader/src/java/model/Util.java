@@ -30,8 +30,14 @@ public class Util {
     }
 
     public static boolean isCodeValid(String code) { // Postal Code Validation
-        
+
         return code.matches("^\\d{4,5}$");
+
+    }
+
+    public static boolean isInteger(String value) {
+
+        return value.matches("^\\d+$");
 
     }
 
