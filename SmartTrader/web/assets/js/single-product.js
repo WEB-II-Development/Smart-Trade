@@ -114,7 +114,7 @@ async function loadData() {
                                                 <li class="color-extra-01 active">
                                                     <!-- color-border and color-background -->
                                                     <span id="similer-product-color-border" style="black">
-                                                        <span class="color" id="similer-product-color-background"style="${item.color.value}">
+                                                        <span class="color" id="similer-product-color-background" style="background-color:${item.color.value}">
                                                         </span>
                                                     </span> 
                                                 </li>
