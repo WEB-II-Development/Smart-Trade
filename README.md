@@ -163,4 +163,41 @@ After completing the sign-up process, users are:
   
 <img width="1607" height="727" alt="image" src="https://github.com/user-attachments/assets/819131fa-8dd2-4ee9-b6fb-176d0d2bca22" />
 
+# 2025-07-21
+
+## 🛍️ Single Product View
+
+This module allows users to view detailed information about a specific product in the store, including dynamic interaction like image preview, color display, and related product suggestions.
+
+### 🔧 How It Works
+
+#### Page Initialization
+- JavaScript reads the product ID from the URL (e.g., `?id=2`).
+
+#### Data Fetching
+- Sends an asynchronous request to `LoadSingleProduct` backend API to retrieve product details and related items.
+
+#### UI Rendering
+- Main product images and metadata (title, model, brand, price, color, storage, description) are displayed.
+- Color is visually represented using inline CSS for borders and backgrounds.
+
+#### Cart Functionality
+- Users can specify quantity and click "Add to Cart", triggering `addToCart(id, qty)`.
+
+#### Similar Products Carousel
+- A list of related products (`productList`) is dynamically generated and shown in a responsive slick slider.
+- Each similar product card includes title, price, storage, color, and quick actions.
+
+### 📁 File(s) Involved
+- `single-product.html`
+- `single-product.js`
+- `LoadSingleProduct` (backend API endpoint)
+- `/product-images/{id}/image{1,2,3}.png`
+
+* single-product.html
+<img width="1654" height="834" alt="image" src="https://github.com/user-attachments/assets/42c174a8-225c-4d09-b964-5e3301656746" />
+
+<img width="1558" height="860" alt="image" src="https://github.com/user-attachments/assets/14076e41-831f-41e4-9fca-c880e6865a56" />
+
+
 
