@@ -199,5 +199,43 @@ This module allows users to view detailed information about a specific product i
 
 <img width="1558" height="860" alt="image" src="https://github.com/user-attachments/assets/14076e41-831f-41e4-9fca-c880e6865a56" />
 
+# 2025-07-22
 
+## Product Adding process
+
+### ✔ Functionality
+- Receives form data from a product submission form.
+
+- Validates and converts data (brandId, modelId, price, etc.).
+
+- Loads related Hibernate entities (Model, Storage, Color, etc.).
+
+- Creates and saves a Product entity using Hibernate.
+
+- Handles file uploads: saves `image1.png`, `image2.png`, `image3.png` in `product-images/{id}/`.
+
+- Responds with JSON status using Gson.
+
+### 🔧 Suggested Improvements:
+- Currently, validation logic is commented out. Enable it for proper data integrity.
+
+- Return a success status (responJsonObject.addProperty("status", true);) after committing the transaction.
+
+- Return a productId in response for frontend navigation or redirection. 
+
+## 🔍 Product Filtering / Search (Java - Hibernate)
+
+This feature enables dynamic product search using Hibernate criteria queries.
+
+### 🔧 How It Works
+
+#### ➕ New Servlet: `/SearchProducts`
+- Accepts `GET` requests with `q` parameter (search keyword).
+- Uses Hibernate to find products with title matching keyword.
+- Excludes sensitive user data from response.
+- Returns JSON object with matching products.
+
+* search.html
+  
+<img width="508" height="857" alt="image" src="https://github.com/user-attachments/assets/863f1d05-3ba0-4be5-86bc-df1acc2c3bd9" />
 
