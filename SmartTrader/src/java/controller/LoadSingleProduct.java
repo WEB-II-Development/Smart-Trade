@@ -50,7 +50,7 @@ public class LoadSingleProduct extends HttpServlet {
             try {
 
                 Product product = (Product) s.get(Product.class, Integer.valueOf(productId));
-//                System.out.println(product);
+                System.out.println(product);
 
                 if (product.getStatus().getValue().equals("Active")) {
 

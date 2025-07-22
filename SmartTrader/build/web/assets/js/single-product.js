@@ -164,13 +164,13 @@ async function loadData() {
 
             } else {
 
-                window.location = "index.html";
+//                window.location = "index.html";
 
             }
 
         } else {
 
-            window.location = "index.html";
+//            window.location = "index.html";
 
         }
 

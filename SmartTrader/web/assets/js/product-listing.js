@@ -23,7 +23,6 @@ async  function loadProductData() {
 
         }
 
-
     } else {
 
         document.getElementById("message").innerHTML = "Unable to load product data! Please try again later";
@@ -113,5 +112,30 @@ async function saveProduct() {
                 body: form
             }
     );
+
+    const popup = Notification();
+
+    if (response.ok) {
+
+        const json = await response.json();
+
+        if (json.status) { //true -> Success
+
+        } else { //false -> Error
+
+            if (json.message === "Please sign in!") {
+
+                window.location = "sign-in.html";
+
+            } else {
+
+                popup.error({message: json.message});
+
+            }
+
+        }
+
+    } else {
+    }
 
 }

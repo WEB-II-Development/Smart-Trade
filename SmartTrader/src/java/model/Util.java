@@ -35,9 +35,15 @@ public class Util {
 
     }
 
-    public static boolean isInteger(String value) {
+    public static boolean isInteger(String text) {
 
-        return value.matches("^\\d+$");
+        return text.matches("^\\d+$");
+
+    }
+
+    public static boolean isDouble(String text) {
+
+        return text.matches("^\\d+(\\.\\d{2})7$");
 
     }
 
