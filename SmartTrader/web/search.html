@@ -1,4 +1,4 @@
-m<!doctype html>
+<!doctype html>
 <html class="no-js" lang="en">
 
     <head>
@@ -193,6 +193,15 @@ m<!doctype html>
                                 <div class="d-lg-none">
                                     <button class="sidebar-close filter-close-btn"><i class="fas fa-times"></i></button>
                                 </div>
+<!--                                <div class="toggle-list product-categories active">
+                                    <h6 class="title">CATEGORY</h6>
+                                    <div class="shop-submenu">
+                                        <ul id="category-options">
+                                            <li class="current-cat"><a href="#">Apple</a></li>
+                                            <li id="category-li"><a id="categoty-a">Apple</a></li>
+                                        </ul>
+                                    </div>
+                                </div>-->
                                 <div class="toggle-list product-categories active">
                                     <h6 class="title">Brand</h6>
                                     <div class="shop-submenu">
@@ -241,7 +250,7 @@ m<!doctype html>
                                         </form>
                                     </div>
                                 </div>
-                                <button class="axil-btn btn-bg-secondary">Apply</button>
+                                <button class="axil-btn btn-bg-secondary" onclick="searchProduct(0);">Apply</button>
                                 <button class="axil-btn btn-bg-primary mt--10">Reset All</button>
                             </div>
                             <!-- End .axil-shop-sidebar -->
@@ -252,8 +261,8 @@ m<!doctype html>
                                     <div class="axil-shop-top mb--40">
                                         <div class="category-select align-items-center justify-content-lg-end justify-content-between">
                                             <!-- Start Single Select  -->
-                                            <span class="filter-results">Showing 1-10 of 20 results</span>
-                                            <select class="single-select">
+                                            <span class="filter-results">Showing 1-10 of <span id="all-item-count"></span> results</span>
+                                            <select class="single-select" id="st-sort">
                                                 <option>Sort by Latest</option>
                                                 <option>Sort by Oldest</option>
                                                 <option>Sort by Name</option>
