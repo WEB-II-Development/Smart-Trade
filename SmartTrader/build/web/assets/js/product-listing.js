@@ -121,6 +121,40 @@ async function saveProduct() {
 
         if (json.status) { //true -> Success
 
+            popup.success({
+
+                message: "New Product added successfuully"
+
+            });
+
+            //empty the insert fileds and select box is the product is add
+
+            document.getElementById("brand").value = 0;
+
+            document.getElementById("model").value = 0;
+
+            document.getElementById("title").value = "";
+
+            document.getElementById("description").value = "";
+
+            document.getElementById("storage").value = 0;
+
+            document.getElementById("color").value = 0;
+
+            document.getElementById("condition").value = 0;
+
+            document.getElementById("price").value = "0.00";
+
+            document.getElementById("qty").value = 1;
+
+
+
+            document.getElementById("img1").value = 0;
+
+            document.getElementById("img2").value = 0;
+
+            document.getElementById("img3").value = 0;
+
         } else { //false -> Error
 
             if (json.message === "Please sign in!") {

@@ -15,8 +15,6 @@ import hibernate.Product;
 import hibernate.Status;
 import hibernate.Stroage;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +29,7 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Sanjana
+ * @author pneth
  */
 @WebServlet(name = "LoadData", urlPatterns = {"/LoadData"})
 public class LoadData extends HttpServlet {
@@ -39,69 +37,84 @@ public class LoadData extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        JsonObject responseObject = new JsonObject();
+        responseObject.addProperty("status", false);
+
         Gson gson = new Gson();
 
-        JsonObject resposObject = new JsonObject();
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session s = sf.openSession();
 
-        resposObject.addProperty("status", false);
-
-        Session s = HibernateUtil.getSessionFactory().openSession();
-
-        //get Brands
+        //get brands
         Criteria c1 = s.createCriteria(Brand.class);
-        List<Brand> brandList = c1.list();
+        List<Brand> BrandList = c1.list();
 
+        //get brands
         //get Models
         Criteria c2 = s.createCriteria(Model.class);
-        List<Model> modelList = c2.list();
 
-        //get Colors
+        List<Model> ModelList = c2.list();
+
+        //get Models
+        //get Color
         Criteria c3 = s.createCriteria(Color.class);
-        List<Color> colorList = c3.list();
+        List<Color> ColorList = c3.list();
 
-        //get Qualities
-        Criteria c4 = s.createCriteria(Condition.class);
-        List<Condition> qualityList = c4.list();
+        //get Color
+        //get storage
+        Criteria c4 = s.createCriteria(Stroage.class);
+        List<Stroage> StorageList = c4.list();
 
-        //get Stroage
-        Criteria c5 = s.createCriteria(Stroage.class);
-        List<Stroage> stroageList = c5.list();
+        //get storage
+        // get Quality
+        Criteria c5 = s.createCriteria(Condition.class);
+        List<Condition> QualityList = c5.list();
 
-        //loade-product-date-end
-        //get = actual database ekatama call karanawa / load = session object eke data tika cash ekka thiyagannawaa
-        Status status = (Status) s.load(Status.class, 2);
+        // get Quality
+        
+        //load product data
+        //Status status = (Status) s.load(Status.class, 2);
+        Status status = (Status) s.get(Status.class, 2);
         Criteria c6 = s.createCriteria(Product.class);
-        resposObject.addProperty("allProductCount", c6.list().size());
+        //get product form decending order from id
         c6.addOrder(Order.desc("id"));
-        c6.add(Restrictions.eq("status", status));
-
-//        Status status = new Status();
-//        status.setValue("Active");
+        
+        //search the data where id is equal to 2 from product
+        c6.add(Restrictions.eq("status",status));
+        //set the all product count in database ("Active products")
+        responseObject.addProperty("allProductCount", c6.list().size());
+        //set the first value
         c6.setFirstResult(0);
+        
+        //maximum results
         c6.setMaxResults(6);
-
+        
         List<Product> productList = c6.list();
-        for (Product product : productList) {
-
+        
+        for(Product product :productList){
+            
             product.setUser(null);
-
-//            System.out.println(productList);
+            
         }
+        
+        // load product data
+        
+        responseObject.add("brandList", gson.toJsonTree(BrandList));
+        responseObject.add("modelList", gson.toJsonTree(ModelList));
+        responseObject.add("qualityList", gson.toJsonTree(QualityList));
+        responseObject.add("colorList", gson.toJsonTree(ColorList));
+        responseObject.add("storageList", gson.toJsonTree(StorageList));        
+        responseObject.add("productList", gson.toJsonTree(productList));
+
+        System.out.println(responseObject);
+
+        responseObject.addProperty("status", true);
 
         s.close();
 
-        resposObject.add("brandList", gson.toJsonTree(brandList));
-        resposObject.add("modelList", gson.toJsonTree(modelList));
-        resposObject.add("colorList", gson.toJsonTree(colorList));
-        resposObject.add("qualityList", gson.toJsonTree(qualityList));
-        resposObject.add("stroageList", gson.toJsonTree(stroageList));
-        resposObject.addProperty("allProductCount", productList.size());
-        resposObject.add("productList", gson.toJsonTree(productList));
-
-        resposObject.addProperty("status", true);
-
         response.setContentType("application/json");
-        response.getWriter().write(gson.toJson(resposObject));
+        response.getWriter().write(gson.toJson(responseObject));
+        //create JsonObject to send data to client side
 
     }
 
