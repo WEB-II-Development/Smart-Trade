@@ -251,4 +251,47 @@ This feature enables dynamic product search using Hibernate criteria queries.
 
 - Complete Product Adding Process With Validations
 
+# 2025-07-23
+
+## 🔍 Product Filtering 
+
+- Complete Product Filtering And Sorting Process
+
+## 📁 Product Adding process
+
+- Complete Product Adding Process With Validations
+
+
+# 2025-07-25
+
+## 🛒 Cart Process
+
+## 📌 Features
+
+- Manage Session Cart and Db Cart 
+- Add, update products in the cart
+- View subtotal and total prices dynamically
+- Session-based or persistent cart support
+
+
+### 🚀 Cart Process Flow
+
+ **Add to Cart**
+   - Adds selected product with quantity.
+   - Prevents duplicates by updating quantity.
+
+ **View Cart**
+   - Displays all cart items with:
+     - Name
+     - Price
+     - Quantity (editable)
+     - Subtotal
+
+  **Update Cart**
+   - Allows users to update item quantities.
+   - Real-time recalculation of totals.
+
+* cart.html
+<img width="1230" height="735" alt="image" src="https://github.com/user-attachments/assets/b363333d-6c9d-451d-a8da-ab35407472da" />
+
 
