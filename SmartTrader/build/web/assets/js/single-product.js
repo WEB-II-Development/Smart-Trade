@@ -178,8 +178,48 @@ async function loadData() {
 
 }
 
-function addToCart(productId, qty) {
+async function addToCart(productId, qty) {
 
-    console.log(productId + " " + qty);
+//    console.log(productId + " " + qty);
+
+    const popup = new Notification();
+
+    const response = await fetch("AddToCart?prId=" + productId + "&qty=" + qty);
+
+    console.log(response);
+
+    if (response.ok) {
+
+        const json = await response.json();
+
+//        console.log(json);
+
+        if (json.status) {
+
+            popup.success({
+
+                message: json.message
+
+            });
+
+        } else {
+
+            popup.error({
+
+                message: "Something went wrong. Try again"
+
+            });
+
+        }
+
+    } else {
+
+        popup.error({
+
+            message: "Something went wrong. Try again"
+
+        });
+
+    }
 
 }
