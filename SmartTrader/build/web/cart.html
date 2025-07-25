@@ -31,7 +31,7 @@
     </head>
 
 
-    <body class="sticky-header">
+    <body class="sticky-header" onload="loadCartItems();">
         <!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
@@ -232,11 +232,11 @@
                                             <tbody>
                                                 <tr class="order-subtotal">
                                                     <td>Quantities</td>
-                                                    <td class="order-total-amount">1</td>
+                                                    <td class="order-total-amount" id="order-total-quantity">1</td>
                                                 </tr>
                                                 <tr class="order-total">
                                                     <td>Total</td>
-                                                    <td class="order-total-amount">Rs. <span>100,000.00</span></td>
+                                                    <td class="order-total-amount">Rs. <span id="order-total-amount">100,000.00</span></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -521,10 +521,10 @@
 
         <!-- Main JS -->
         <script src="assets/js/main.js"></script>
-
-        <script src="assets/js/cart.js"></script>
         
         <script src="assets/js/notification.js"></script>
+        
+        <script src="assets/js/LoadCartItems.js"></script>
         
     </body>
 
